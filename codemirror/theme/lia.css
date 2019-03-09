@@ -1,0 +1,46 @@
+/* neo theme for codemirror */
+
+/* Color scheme */
+
+.cm-s-lia.CodeMirror {
+  background-color:#ffffff;
+  color:#2e383c;
+  line-height:1.4375;
+  font-family: inherit;
+}
+
+.cm-s-lia .cm-keyword, .cm-s-lia .cm-property {color: #00CC33; font-weight: bold;}
+.cm-s-lia .cm-atom,.cm-s-lia .cm-number {color:orange}
+.cm-s-lia .cm-node,.cm-s-lia .cm-tag {color:#9c3328}
+.cm-s-lia .cm-string {color:#b35e14}
+.cm-s-lia .cm-variable,.cm-s-lia .cm-qualifier, .cm-error {color:#333}
+
+.cm-s-lia .cm-comment{
+  color: #a50;
+}
+
+/* Editor styling */
+
+.cm-s-lia pre {
+  padding: 0px 5px;
+}
+
+.cm-s-lia .CodeMirror-gutters {
+  border:none;
+  border-right:10px solid transparent;
+  background-color:transparent;
+}
+
+.cm-s-lia .CodeMirror-linenumber {
+  padding:0;
+  color:#e0e2e5;
+}
+
+.cm-s-lia .CodeMirror-guttermarker { color: #1d75b3; }
+.cm-s-lia .CodeMirror-guttermarker-subtle { color: #e0e2e5; }
+
+
+
+
+
+

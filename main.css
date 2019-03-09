@@ -1,0 +1,15 @@
+body{
+    font-family: monospace;
+}
+.main_part{
+    width: calc(50% - 80px);
+    padding: 20px;
+    margin: auto;
+    float: left;
+    vertical-align: top;
+    display: inline-block;
+    outline: none;
+}
+.CodeMirror{
+    float: left;
+}

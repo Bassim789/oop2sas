@@ -11,10 +11,12 @@
 <link rel="stylesheet" href="/oop2sas.css?v=<?=time()?>">
 <script src="/oop2sas.js?v=<?=time()?>"></script>
 <body>
-<h1>OOP <strong>2</strong> SAS</h1>
-<div id="icon_clean_source"><img src="/img/cross.png"></div>
-<textarea id="source_code" class="main_part" placeholder="Enter oop sas code..." ></textarea>
-<textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code""></textarea>
+<h1>OOP<strong>2</strong>SAS</h1>
+<div class="main_body">
+    <div id="icon_clean_source"><img src="/img/cross.png"></div>
+    <textarea id="source_code" class="main_part" placeholder="Enter oop sas code..." ></textarea>
+    <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code""></textarea>
+</div>
 <footer>
     by <a href="https://simergie.ch" target="_blanck">
         <img class="mini_logo"src="/img/logo_simergie.png"> Simergie</a>

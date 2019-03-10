@@ -80,9 +80,9 @@ class oop2sas{
         this.editor_source.setSize('50%', 'auto') 
         this.editor_source.on('change', () => {
             if(this.editor_source.getValue() !== ''){
-                $('#' + elems.clean_btn_id).show()
+                $('#' + elems.clean_btn_id).fadeIn(300)
             } else {
-                $('#' + elems.clean_btn_id).hide()
+                $('#' + elems.clean_btn_id).fadeOut(300)
             }
             this.editor_compiled.setValue(this.run(this.editor_source.getValue()))
         })

@@ -17,10 +17,16 @@ footer{
     display: inline-block;
     width: 100%;
     text-align: center;
-    padding: 10px 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 a{
     color: #89bad2;
+}
+.main_body{
+    min-height: calc(100vh - 130px);
+    width: 100%;
+    display: inline-block;
 }
 #icon_clean_source{
     position: absolute;

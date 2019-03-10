@@ -1,0 +1,45 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+}
+h1{
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    padding-bottom: 5px;
+}
+h1 strong{
+    font-size: 40px;
+}
+footer{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+}
+a{
+    color: #89bad2;
+}
+.main_part{
+    width: calc(50% - 80px);
+    padding: 20px;
+    margin: auto;
+    float: left;
+    vertical-align: top;
+    display: inline-block;
+    outline: none;
+}
+#compiled_code{
+    border-right: 1px solid #ddd;
+}
+.CodeMirror{
+    float: left;
+}
+@media all and (max-width: 700px) {
+    .CodeMirror{
+        width: 100% !important;
+    }
+}

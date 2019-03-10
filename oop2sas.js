@@ -1,39 +1,53 @@
-function oop2sas(){
-    this.clean_source_lines = [];
-    this.compiled_code = ''
-    this.class_name_found = false
-    this.first_method_done = false
-    this.class_name = false
-    this.endswith = (str, suffix) => str.indexOf(suffix, str.length - suffix.length) !== -1
-    this.check_class_name = (line) => this.endswith(line.trim(' '), ':') && !this.class_name_found
-    this.check_method_name = (line) => this.endswith(line.trim(), ':')
-    this.check_last_line = (line_num) => line_num === this.clean_source_lines.length - 1
-    this.print_class_name = (line) => {
+class oop2sas{
+    constructor(){
+        this.clean_source_lines = []
+        this.compiled_code = ''
+        this.class_name_found = false
+        this.first_method_done = false
+        this.class_name = false
+    }
+    set_default(code){ 
+        this.editor_source.setValue(code)
+    }
+    endswith(str, suffix){ 
+        return str.indexOf(suffix, str.length - suffix.length) !== -1 
+    }
+    check_class_name(line){ 
+        return this.endswith(line.trim(' '), ':') && !this.class_name_found 
+    }
+    check_method_name(line){ 
+        return this.endswith(line.trim(), ':')
+    }
+    check_last_line(line_num){ 
+        return line_num === this.clean_source_lines.length - 1
+    }
+    print_class_name(line){
         this.class_name = line.split(':')[0].trim()
         this.class_name_found = true;
         this.compiled_code += '%macro ' + this.class_name
         this.compiled_code += `(id, method, arg1, arg2, arg3, arg4, arg5);
+    %macro _; %mend _;
     %local self; %let self =  ${this.class_name};
     %local this; %let this = &self&id;
     %goto &method;
     `
     }
-    this.print_method_name = (line) => {
+    print_method_name(line){
         if(this.first_method_done) this.compiled_code += `    %return;
     `
         this.compiled_code += '%' + line.trim() + `
 `
         this.first_method_done = true
     }
-    this.print_line = (line) => {
+    print_line(line){
         this.compiled_code += line + `
 `
-     }
-    this.print_end_class = () => {
+    }
+    print_end_class(){
         this.compiled_code += `    %return;
 %mend;`
     }
-    this.run_oop2sas = (oop_code) => {
+    run(oop_code){
         this.compiled_code = ''
         this.class_name_found = false
         this.first_method_done = false
@@ -58,10 +72,10 @@ function oop2sas(){
         }
         return this.compiled_code
     }
-    this.init = (source_id, compiled_id, action) => {
+    init(source_id, compiled_id, action){
         var textarea = document.getElementById(source_id)
         this.editor_source = CodeMirror.fromTextArea(textarea, {
-            mode: "javascript",
+            mode: 'sas',
             lineNumbers: true,
             indentUnit: 4,
             indentWithTabs: true,
@@ -74,7 +88,7 @@ function oop2sas(){
         })
         var textarea_compiled = document.getElementById(compiled_id)
         this.editor_compiled = CodeMirror.fromTextArea(textarea_compiled, {
-            mode: "javascript",
+            mode: 'sas',
             lineNumbers: true,
             indentUnit: 4,
             indentWithTabs: true,

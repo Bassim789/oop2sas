@@ -8,18 +8,16 @@ class oop2sas{
     }
     set_default(code){ 
         this.editor_source.setValue(code)
-    }
-    endswith(str, suffix){ 
-        return str.indexOf(suffix, str.length - suffix.length) !== -1 
+        this.editor_source.focus()
     }
     check_class_name(line){ 
-        return this.endswith(line.trim(' '), ':') && !this.class_name_found 
+        return line.trim(' ').endsWith(':') && !this.class_name_found 
     }
     check_method_name(line){ 
-        return this.endswith(line.trim(), ':')
+        return line.trim().endsWith(':') && !line.startsWith('      ')
     }
     check_last_line(line_num){ 
-        return line_num === this.clean_source_lines.length - 1
+        return line_num === this.clean_source_lines.length - 1 && this.first_method_done
     }
     print_class_name(line){
         this.class_name = line.split(':')[0].trim()
@@ -40,8 +38,11 @@ class oop2sas{
         this.first_method_done = true
     }
     print_line(line){
-        this.compiled_code += line + `
+        this.compiled_code += line
+        if(this.class_name_found || this.clean_source_lines.length > 1){
+            this.compiled_code += `
 `
+        }
     }
     print_end_class(){
         this.compiled_code += `    %return;
@@ -55,16 +56,10 @@ class oop2sas{
         this.clean_source_lines = []
         var lines = oop_code.split('\n')
         for(var i = 0; i < lines.length; i++){
-            if(lines[i].trim() !== ''){
-                this.clean_source_lines.push(lines[i])
-            }
+            this.clean_source_lines.push(lines[i])
         }
         for(var i = 0; i < this.clean_source_lines.length; i++){
             var line = this.clean_source_lines[i]
-            if(line.trim() === ''){
-                if(this.check_last_line(i)) this.print_end_class()
-                continue
-            }
             if(this.check_class_name(line)) this.print_class_name(line)
             else if(this.check_method_name(line)) this.print_method_name(line)
             else this.print_line(line)
@@ -72,8 +67,8 @@ class oop2sas{
         }
         return this.compiled_code
     }
-    init(source_id, compiled_id, action){
-        var textarea = document.getElementById(source_id)
+    init(elems){
+        var textarea = document.getElementById(elems.source_id)
         this.editor_source = CodeMirror.fromTextArea(textarea, {
             mode: 'sas',
             lineNumbers: true,
@@ -84,9 +79,14 @@ class oop2sas{
         })
         this.editor_source.setSize('50%', 'auto') 
         this.editor_source.on('change', () => {
-            this.editor_compiled.setValue(action(this.editor_source.getValue()))
+            if(this.editor_source.getValue() !== ''){
+                $('#' + elems.clean_btn_id).show()
+            } else {
+                $('#' + elems.clean_btn_id).hide()
+            }
+            this.editor_compiled.setValue(this.run(this.editor_source.getValue()))
         })
-        var textarea_compiled = document.getElementById(compiled_id)
+        var textarea_compiled = document.getElementById(elems.compiled_id)
         this.editor_compiled = CodeMirror.fromTextArea(textarea_compiled, {
             mode: 'sas',
             lineNumbers: true,
@@ -96,5 +96,9 @@ class oop2sas{
 
         })
         this.editor_compiled.setSize('50%', 'auto')
-    }    
+        $('body').on('click', '#' + elems.clean_btn_id, () => {
+            this.editor_source.setValue('')
+            this.editor_source.focus()
+        })
+    }
 }

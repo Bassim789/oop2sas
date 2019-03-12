@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/codemirror/lib/codemirror.css">
 <script src="/codemirror/lib/codemirror.js"></script>
-<script src="/codemirror/mode/sas/sas.js"></script>
+<script src="/codemirror/mode/sas/sas.js?v=<?=time()?>"></script>
 <script src="/codemirror/placeHolder.js"></script>
 <link rel="stylesheet" href="/oop2sas.css?v=<?=time()?>">
 <script src="/oop2sas.js?v=<?=time()?>"></script>
@@ -36,20 +36,21 @@ o2s.init({
 })
 o2s.set_default(`/* a small example */
 calculator:
+    %local pi; %let pi = 3.14;
     init_nb_var_set:
         %global &self._nb_var_set; %let &self._nb_var_set = 0;
-    set:
+    set(varname, value):
         %let &self._nb_var_set = %eval(&&&self._nb_var_set + 1);
-        %global &this._&arg1; %let &this._&arg1 = &arg2;
-    get:
-        &&&this._&arg1
-    double:
-        %eval(2 * &arg1)
-    double_var:
-        %let &this._&arg1 = %&self(&id, double, &&&this._&arg1);
-    save:
-        data &arg1;
-            set &arg1;
+        %global &this._&varname; %let &this._&varname = &value;
+    get(varname):
+        &&&this._&varname
+    double(value):
+        %eval(2 * &value)
+    double_var(varname):
+        %let &this._&varname = %&self(double, &&&this._&varname);
+    save_data(mydata):
+        data &mydata;
+            set &mydata;
             nb_var_set = &&&self._nb_var_set
         run;`
 )

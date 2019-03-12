@@ -27,7 +27,7 @@ class oop2sas{
         for(let i = 0; i < this.nb_max_arg; i++){
             args += ' arg' + (i + 1) + ','
         }   
-        this.compiled_code += `(method,${args} obj =) ;
+        this.compiled_code += `(method,${args} obj =);
     %local self; %let self = ${this.class_name};
     %local this; %let this = &self&obj;
 `

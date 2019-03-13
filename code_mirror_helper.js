@@ -16,8 +16,7 @@ class code_mirror_helper{
             lineNumbers: true,
             indentUnit: 4,
             indentWithTabs: true,
-            viewportMargin: Infinity,
-
+            viewportMargin: Infinity
         })
         code_mirror_instance.setSize('50%', 'auto') 
         return code_mirror_instance

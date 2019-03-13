@@ -37,7 +37,8 @@ helper.init_textarea({
     compiled_id: 'compiled_code',
     clean_btn_id: 'icon_clean_source'
 })
-const source_url = '/example/calculator.txt?v=<?=time()?>'
-$.get(source_url, (source) => helper.set_default_source(source))
+const source_example = 'calculator'
+const source = `<?=file_get_contents('/example/${source_example}.oop2.sas')?>`;
+helper.set_default_source(source)
 </script>
 </html>

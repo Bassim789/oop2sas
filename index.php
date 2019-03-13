@@ -37,7 +37,7 @@ helper.init_textarea({
     compiled_id: 'compiled_code',
     clean_btn_id: 'icon_clean_source'
 })
-const source_url = '/example1_calculator.txt?v=<?=time()?>'
+const source_url = '/example/calculator.txt?v=<?=time()?>'
 $.get(source_url, (source) => helper.set_default_source(source))
 </script>
 </html>

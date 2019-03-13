@@ -1,9 +1,8 @@
 class code_mirror_helper{
-    constructor(){
-        this.compilator = false
-    }
-    init_compilator(compilator){
-        this.compilator = compilator
+    constructor(option){
+        this.mode = option.mode
+        this.theme = option.theme
+        this.compilator = option.compilator
     }
     set_default_source(code){
         this.editor_source.setValue(code)
@@ -12,7 +11,8 @@ class code_mirror_helper{
     create_code_mirror(textarea_id){
         const textarea = document.getElementById(textarea_id)
         const code_mirror_instance = CodeMirror.fromTextArea(textarea, {
-            mode: 'sas',
+            mode: this.mode,
+            theme: this.theme,
             lineNumbers: true,
             indentUnit: 4,
             indentWithTabs: true,
@@ -30,13 +30,9 @@ class code_mirror_helper{
             } else {
                 $('#' + elems.clean_btn_id).fadeOut(300)
             }
-            if(this.compilator){
-                const source = this.editor_source.getValue()
-                const compiled = this.compilator.run(source)
-                this.editor_compiled.setValue(compiled)
-            } else {
-                console.log('no compilator initialised')
-            }
+            const source = this.editor_source.getValue()
+            const compiled = this.compilator.run(source)
+            this.editor_compiled.setValue(compiled)            
         })
         $('body').on('click', '#' + elems.clean_btn_id, () => {
             this.editor_source.setValue('')

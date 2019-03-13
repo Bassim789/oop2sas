@@ -1,12 +1,13 @@
-body{
+html, body{
     padding: 0;
     margin: 0;
     font-family: monospace;
+    background: #272822;
+    color: #f8f8f2;
 }
 h1{
     text-align: center;
     width: 100%;
-    border-bottom: 1px solid #ddd;
     margin: 0;
     padding-bottom: 5px;
 }
@@ -48,12 +49,8 @@ a{
     display: inline-block;
     outline: none;
 }
-#compiled_code{
-    border-right: 1px solid #ddd;
-}
 .CodeMirror{
     float: left;
-    border-bottom: 1px solid #ddd;
 }
 .mini_logo{
     width: 18px;

@@ -1,3 +1,4 @@
+/* A timer example */
 timer:
     %local table_report; %let table_report = report;
     %local table_add; %let table_add = add_to_report;

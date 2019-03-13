@@ -33,3 +33,5 @@
   text-decoration: underline;
   color: white !important;
 }
+
+.cm-s-monokai span.cm-builtin { color: #9effff;}

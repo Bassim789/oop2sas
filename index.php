@@ -8,8 +8,9 @@
 <script src="/codemirror/lib/codemirror.js"></script>
 <script src="/codemirror/mode/sas/sas.js?v=<?=time()?>"></script>
 <script src="/codemirror/placeHolder.js"></script>
-<link rel="stylesheet" href="/oop2sas.css?v=<?=time()?>">
+<link rel="stylesheet" href="/style.css?v=<?=time()?>">
 <script src="/oop2sas.js?v=<?=time()?>"></script>
+<script src="/code_mirror_helper.js?v=<?=time()?>"></script>
 <body>
 <h1>OOP<strong>2</strong>SAS</h1>
 <div class="main_body">
@@ -28,31 +29,15 @@
 </footer>
 </body>
 <script>
-const o2s = new oop2sas()
-o2s.init({
+const helper = new code_mirror_helper()
+const compilator = new oop2sas()
+helper.init_compilator(compilator)
+helper.init_textarea({
     source_id: 'source_code', 
     compiled_id: 'compiled_code',
     clean_btn_id: 'icon_clean_source'
 })
-o2s.set_default(`/* a small example */
-calculator:
-    %local pi; %let pi = 3.14;
-    init_nb_var_set:
-        %global &self._nb_var_set; %let &self._nb_var_set = 0;
-    set(varname, value):
-        %let &self._nb_var_set = %eval(&&&self._nb_var_set + 1);
-        %global &this._&varname; %let &this._&varname = &value;
-    get(varname):
-        &&&this._&varname
-    double(value):
-        %eval(2 * &value)
-    double_var(varname):
-        %let &this._&varname = %&self(double, &&&this._&varname);
-    save_data(mydata):
-        data &mydata;
-            set &mydata;
-            nb_var_set = &&&self._nb_var_set
-        run;`
-)
+const source_url = '/example1_calculator.txt?v=<?=time()?>'
+$.get(source_url, (source) => helper.set_default_source(source))
 </script>
 </html>

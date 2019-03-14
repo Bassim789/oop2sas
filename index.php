@@ -1,3 +1,6 @@
+<?php 
+error_reporting(-1);
+?>
 <!DOCTYPE html>
 <html>
 <title>OOP 2 SAS compilator</title>
@@ -14,6 +17,17 @@
 <script src="/code_mirror_helper.js?v=<?=time()?>"></script>
 <body>
 <h1>OOP<strong>2</strong>SAS</h1>
+<div class="buttons_box">
+    <button class="button_source" example_name="basic_example">
+        Basic example
+    </button>
+    <button class="button_source" example_name="example_calculator">
+        Example calculator
+    </button>
+    <button class="button_source" example_name="example_timer">
+        Example timer
+    </button>
+</div>
 <div class="main_body">
     <div id="icon_clean_source"><img src="/img/cross.png?v=2"></div>
     <textarea id="source_code" class="main_part" placeholder="Enter oop sas code..." ></textarea>
@@ -40,12 +54,20 @@ helper.init_textarea({
     compiled_id: 'compiled_code',
     clean_btn_id: 'icon_clean_source'
 })
-<?php
-$source_examples = ['calculator', 'timer'];
-$source_example = $source_examples[array_rand($source_examples)];
-$source_file = dirname(__FILE__).'/example/'.$source_example.'.oop2.sas';
+<?php 
+$path = dirname(__FILE__);
+$ext = '.oop2.sas';
 ?>
-const source = `<?=file_get_contents($source_file)?>`;
-helper.set_default_source(source)
+const examples = {
+    basic_example: `<?=file_get_contents($path.'/example/'.'basic_example'.$ext)?>`,
+    example_calculator: `<?=file_get_contents($path.'/example/'.'example_calculator'.$ext)?>`,
+    example_timer: `<?=file_get_contents($path.'/example/'.'example_timer'.$ext)?>`
+}
+helper.set_default_source(examples.basic_example)
+$('body').on('click', '.button_source', function (){
+    const example_name = $(this).attr('example_name')
+    console.log(example_name)
+    helper.set_default_source(examples[example_name])
+})
 </script>
 </html>

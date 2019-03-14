@@ -22,6 +22,7 @@ class oop2sas{
             args += ' arg' + (i + 1) + ','
         }   
         this.compiled_code += `(method,${args} obj =);
+    %macro bringBackColor; %mend bringBackColor;
     %local self; %let self = ${this.class_name};
     %local this; %let this = &self&obj;` + this.return_0_indend
     }
@@ -62,9 +63,7 @@ class oop2sas{
                 this.compiled_code += '    %return;' + this.return_1_indend
             }
         } else { 
-            this.compiled_code += '    %goto &method; ' + this.return_1_indend
-            this.compiled_code += '%macro bringBackColor; %mend bringBackColor;'
-            this.compiled_code += this.return_1_indend + this.return_1_indend
+            this.compiled_code += '    %goto &method; ' + this.return_1_indend + this.return_1_indend
         }
         if(line.split('(').length > 1){
             this.print_method_name_with_args(line)

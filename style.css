@@ -25,13 +25,13 @@ a{
     color: #89bad2;
 }
 .main_body{
-    min-height: calc(100vh - 130px);
+    min-height: calc(100vh - 150px);
     width: 100%;
     display: inline-block;
 }
 #icon_clean_source{
     position: absolute;
-    top: 52px;
+    top: 72px;
     left: calc(50% - 10px);
     cursor: pointer;
     z-index: 100;
@@ -55,6 +55,23 @@ a{
 .mini_logo{
     width: 18px;
     vertical-align: bottom;
+}
+.buttons_box{
+    padding: 0px 20px 10px 20px;
+    margin-top: -10px;
+}
+.button_source{
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #ddd;
+    cursor: pointer;
+    outline: none;
+}
+.button_source:hover{
+    background: rgba(255, 255, 255, 0.1);
+}
+.button_source:active{
+    background: rgba(255, 255, 255, 0.2);
 }
 @media all and (max-width: 700px) {
     .CodeMirror{

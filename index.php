@@ -7,15 +7,14 @@ error_reporting(-1);
 <link href="/img/o2-logo.png" rel="icon">
 <meta name="theme-color" content="#272822">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="/style.css?v=<?=time()?>" rel="stylesheet">
 <link href="/codemirror/lib/codemirror.css" rel="stylesheet">
-<script src="/codemirror/lib/codemirror.js"></script>
+<link href="/codemirror/theme/monokai.css?v=<?=time()?>" rel="stylesheet">
+<script src="/codemirror/lib/codemirror.min.js"></script>
 <script src="/codemirror/placeHolder.js"></script>
 <script src="/codemirror/code_mirror_mode_simple.js"></script>
-<link href="/codemirror/theme/monokai.css?v=<?=time()?>" rel="stylesheet">
 <script src="/codemirror/mode/sas/sas.js?v=<?=time()?>"></script>
 <script src="/codemirror/mode/oop2sas/oop2sas.js?v=<?=time()?>"></script>
-<link href="/style.css?v=<?=time()?>" rel="stylesheet" >
 <script src="/oop2sas.js?v=<?=time()?>"></script>
 <script src="/code_mirror_helper.js?v=<?=time()?>"></script>
 <body>
@@ -31,10 +30,10 @@ error_reporting(-1);
         Timer
     </button>
 </div>
-<div class="icon_clean_source" id="icon_clean_source_oop"><img src="/img/cross.png?v=2"></div>
+<div class="icon_clean_source" id="icon_clean_source_oop"><img src="/img/cross.png"></div>
 <textarea id="oop_code" placeholder="Enter oop sas code..." ></textarea>
 <div class="main_body">
-    <div class="icon_clean_source" id="icon_clean_source"><img src="/img/cross.png?v=2"></div>
+    <div class="icon_clean_source" id="icon_clean_source"><img src="/img/cross.png"></div>
     <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." ></textarea>
     <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code"></textarea>
 </div>
@@ -43,7 +42,7 @@ error_reporting(-1);
         <img class="mini_logo" src="/img/logo_simergie.png"> Simergie</a>
     <br>
     Code on <a href="https://github.com/Bassim789/oop2sas" target="_blanck">
-        <img class="mini_logo" src="/img/github-logo.png?v=2"> Github</a>
+        <img class="mini_logo" src="/img/github-logo.png"> Github</a>
     <br>
     <?=Date('Y')?> 
 </footer>
@@ -83,11 +82,16 @@ const examples = {
     }
 }
 helper.set_default_source(examples.hello)
-$('body').on('click', '.button_source', function (){
-    const example_name = $(this).attr('example_name')
-    helper.set_default_source(examples[example_name])
-    $('.button_source').removeClass('selected')
-    $(this).addClass('selected')
+
+const button_source = document.querySelectorAll('.button_source')
+Array.from(button_source).forEach(button => {
+    button.addEventListener('click', event => {
+        const elem = event.target
+        Array.from(button_source).forEach(el => el.classList.remove('selected'))
+        elem.classList.add('selected')
+        const example_name = elem.getAttribute('example_name')
+        helper.set_default_source(examples[example_name])
+    })
 })
 </script>
 </html>

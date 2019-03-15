@@ -20,8 +20,8 @@ error_reporting(-1);
 <body>
 <h1>OOP<strong>2</strong>SAS</h1>
 <div class="buttons_box">
-    <button class="button_source" example_name="basic_example">
-        Basic example
+    <button class="button_source selected" example_name="hello">
+        Hello word
     </button>
     <button class="button_source" example_name="example_calculator">
         Example calculator
@@ -61,14 +61,16 @@ $path = dirname(__FILE__);
 $ext = '.oop2.sas';
 ?>
 const examples = {
-    basic_example: `<?=file_get_contents($path.'/example/'.'basic_example'.$ext)?>`,
+    hello: `<?=file_get_contents($path.'/example/'.'hello'.$ext)?>`,
     example_calculator: `<?=file_get_contents($path.'/example/'.'example_calculator'.$ext)?>`,
     example_timer: `<?=file_get_contents($path.'/example/'.'example_timer'.$ext)?>`
 }
-helper.set_default_source(examples.basic_example)
+helper.set_default_source(examples.hello)
 $('body').on('click', '.button_source', function (){
     const example_name = $(this).attr('example_name')
     helper.set_default_source(examples[example_name])
+    $('.button_source').removeClass('selected')
+    $(this).addClass('selected')
 })
 </script>
 </html>

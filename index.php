@@ -5,6 +5,7 @@ error_reporting(-1);
 <html>
 <title>OOP 2 SAS compilator</title>
 <link href="/img/o2-logo.png" rel="icon">
+<meta name="theme-color" content="#272822">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="/codemirror/lib/codemirror.css" rel="stylesheet">
@@ -24,15 +25,17 @@ error_reporting(-1);
         Hello word
     </button>
     <button class="button_source" example_name="example_calculator">
-        Example calculator
+        Calculator
     </button>
     <button class="button_source" example_name="example_timer">
-        Example timer
+        Timer
     </button>
 </div>
+<div class="icon_clean_source" id="icon_clean_source_oop"><img src="/img/cross.png?v=2"></div>
+<textarea id="oop_code" placeholder="Enter oop sas code..." ></textarea>
 <div class="main_body">
-    <div id="icon_clean_source"><img src="/img/cross.png?v=2"></div>
-    <textarea id="source_code" class="main_part" placeholder="Enter oop sas code..." ></textarea>
+    <div class="icon_clean_source" id="icon_clean_source"><img src="/img/cross.png?v=2"></div>
+    <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." ></textarea>
     <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code"></textarea>
 </div>
 <footer>
@@ -51,6 +54,10 @@ const helper = new code_mirror_helper({
     theme: 'monokai',
     compilator: new oop2sas()
 })
+helper.init_oop_code({
+    textarea_id: 'oop_code',
+    clean_btn_id: 'icon_clean_source_oop'
+})
 helper.init_textarea({
     source_id: 'source_code', 
     compiled_id: 'compiled_code',
@@ -58,12 +65,22 @@ helper.init_textarea({
 })
 <?php 
 $path = dirname(__FILE__);
-$ext = '.oop2.sas';
+$ext_oop = '_run.sas';
+$ext_class = '.oop2.sas';
 ?>
 const examples = {
-    hello: `<?=file_get_contents($path.'/example/'.'hello'.$ext)?>`,
-    example_calculator: `<?=file_get_contents($path.'/example/'.'example_calculator'.$ext)?>`,
-    example_timer: `<?=file_get_contents($path.'/example/'.'example_timer'.$ext)?>`
+    hello: {
+        oop: `<?=file_get_contents($path.'/example/'.'hello'.$ext_oop)?>`,
+        oop_class: `<?=file_get_contents($path.'/example/'.'hello'.$ext_class)?>`
+    },
+    example_calculator: {
+        oop: `<?=file_get_contents($path.'/example/'.'calculator'.$ext_oop)?>`,
+        oop_class: `<?=file_get_contents($path.'/example/'.'calculator'.$ext_class)?>`
+    },
+    example_timer: {
+        oop: `<?=file_get_contents($path.'/example/'.'timer'.$ext_oop)?>`,
+        oop_class: `<?=file_get_contents($path.'/example/'.'timer'.$ext_class)?>`
+    }
 }
 helper.set_default_source(examples.hello)
 $('body').on('click', '.button_source', function (){

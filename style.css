@@ -28,17 +28,23 @@ a{
     min-height: calc(100vh - 150px);
     width: 100%;
     display: inline-block;
+    position: relative;
 }
-#icon_clean_source{
+.icon_clean_source{
     position: absolute;
-    top: 72px;
+    top: 12px;
     left: calc(50% - 10px);
     cursor: pointer;
     z-index: 100;
 }
-#icon_clean_source img{
+.icon_clean_source img{
     width: 20px;
 }
+
+#icon_clean_source_oop{
+    top: 85px;
+}
+
 .main_part{
     display: none;
     width: calc(50% - 80px);
@@ -52,13 +58,17 @@ a{
 .CodeMirror{
     float: left;
 }
+.main_body .CodeMirror{
+    margin-top: 10px;
+    border-top: 1px solid #666;
+}
 .mini_logo{
     width: 18px;
     vertical-align: bottom;
 }
 .buttons_box{
     padding: 0px 20px 10px 20px;
-    margin-top: -10px;
+    margin-top: 5px;
 }
 .button_source{
     background: transparent;
@@ -80,7 +90,7 @@ a{
     .CodeMirror{
         width: 100% !important;
     }
-    #icon_clean_source{
+    .icon_clean_source{
         left: auto;
         right: 1px;
     }

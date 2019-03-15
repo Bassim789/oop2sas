@@ -22,7 +22,7 @@
 
       {regex: /%local|%global|%let|%if|%end|%end;|%else|%else;|%do|%do;|%then/, token: "sas_macro_define"},
       
-      {regex: /proc|run;|quit;|data/, token: "sas_function"},
+      {regex: /proc|run;|quit;|data|end;/, token: "sas_function"},
       
       {regex: /(\%[\w]+)/, token: 'macro_function'}, 
 

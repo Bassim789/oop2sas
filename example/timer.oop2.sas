@@ -1,4 +1,3 @@
-/* A timer example */
 timer:
     %local table_report; %let table_report = report;
     %local table_add; %let table_add = add_to_report;
@@ -23,6 +22,10 @@ timer:
             or &&&this._steps = __empty__ %then %do;
             %&self(new);
         %end;
+        %else %do;
+            %let step = %scan(&&&this._steps, %sysfunc(countw(&&&this._steps));
+            %&self(finish, &step)
+        %end;
         %let &this._steps = &&&this._steps &step_name;
         %&self(set_now, start_&step_name)
         %put ********* START &step_name *********;
@@ -35,6 +38,8 @@ timer:
         
     finish_total:
         %local total;
+        %let step = %scan(&&&this._steps, %sysfunc(countw(&&&this._steps));
+        %&self(finish, &step)
         %let total = %sysevalf(%sysfunc(datetime()) - &&&this._total_start);
         %&self(set, total_duration, &total)
         

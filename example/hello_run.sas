@@ -1,0 +1,1 @@
+%hello(say_to, word)

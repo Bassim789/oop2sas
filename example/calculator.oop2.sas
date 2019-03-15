@@ -1,4 +1,4 @@
-/* a small example */
+/* a small dummy example */
 calculator:
     %local pi; %let pi = 3.14;
 

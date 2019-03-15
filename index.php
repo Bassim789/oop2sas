@@ -10,8 +10,10 @@ error_reporting(-1);
 <link href="/codemirror/lib/codemirror.css" rel="stylesheet">
 <script src="/codemirror/lib/codemirror.js"></script>
 <script src="/codemirror/placeHolder.js"></script>
+<script src="/codemirror/code_mirror_mode_simple.js"></script>
 <link href="/codemirror/theme/monokai.css?v=<?=time()?>" rel="stylesheet">
 <script src="/codemirror/mode/sas/sas.js?v=<?=time()?>"></script>
+<script src="/codemirror/mode/oop2sas/oop2sas.js?v=<?=time()?>"></script>
 <link href="/style.css?v=<?=time()?>" rel="stylesheet" >
 <script src="/oop2sas.js?v=<?=time()?>"></script>
 <script src="/code_mirror_helper.js?v=<?=time()?>"></script>
@@ -45,7 +47,7 @@ error_reporting(-1);
 </body>
 <script>
 const helper = new code_mirror_helper({
-    mode: 'sas',
+    mode: 'oop2sas',
     theme: 'monokai',
     compilator: new oop2sas()
 })
@@ -66,7 +68,6 @@ const examples = {
 helper.set_default_source(examples.basic_example)
 $('body').on('click', '.button_source', function (){
     const example_name = $(this).attr('example_name')
-    console.log(example_name)
     helper.set_default_source(examples[example_name])
 })
 </script>

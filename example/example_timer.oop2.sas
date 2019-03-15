@@ -5,6 +5,7 @@ timer:
 
     new:
         %&self(set, steps, )
+        %&self(start_total)
     
     set(varname, value):
         %global &this._&varname; 
@@ -18,6 +19,10 @@ timer:
         %let &this._&varname = %sysfunc(datetime());
         
     start(step_name):
+        %if not(%symexist(&this._steps)) 
+            or &&&this._steps = __empty__ %then %do;
+            %&self(new);
+        %end;
         %let &this._steps = &&&this._steps &step_name;
         %&self(set_now, start_&step_name)
         %put ********* START &step_name *********;
@@ -100,3 +105,10 @@ timer:
         proc datasets nolist;
            delete &table_add &table_report;
         run;
+    print:
+        %&self(finish_total)
+        %&self(init_report)
+        %&self(add_all_duration)
+        %&self(add_total_duration)
+        %&self(print_all_duration)
+        %let &this._steps = __empty__;

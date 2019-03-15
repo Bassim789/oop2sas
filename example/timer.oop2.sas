@@ -110,6 +110,7 @@ timer:
         proc datasets nolist;
            delete &table_add &table_report;
         run;
+        
     print:
         %&self(finish_total)
         %&self(init_report)

@@ -1,39 +1,22 @@
 <?php 
 error_reporting(-1);
+require 'utils.php';
 ?>
 <!DOCTYPE html>
 <html>
+<head>
 <title>OOP 2 SAS compilator</title>
-<link href="/img/o2-logo.png" rel="icon">
+<link href="<?=to_img('/img/o2-logo.png')?>" rel="icon">
 <meta name="theme-color" content="#272822">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<link href="/style.css?v=<?=time()?>" rel="stylesheet">
-<link href="/codemirror/lib/codemirror.css" rel="stylesheet">
-<link href="/codemirror/theme/monokai.css?v=<?=time()?>" rel="stylesheet">
-<script src="/codemirror/lib/codemirror.min.js"></script>
-<script src="/codemirror/placeHolder.js"></script>
-<script src="/codemirror/code_mirror_mode_simple.js"></script>
-<script src="/codemirror/mode/sas/sas.js?v=<?=time()?>"></script>
-<script src="/codemirror/mode/oop2sas/oop2sas.js?v=<?=time()?>"></script>
-<script src="/oop2sas.js?v=<?=time()?>"></script>
-<script src="/code_mirror_helper.js?v=<?=time()?>"></script>
-<script>
-var supportsES6 = function(){
-  try {
-    new Function("(a = 0) => a");
-    return true;
-  }
-  catch (err) {
-    return false;
-  }
-}();
-if(!supportsES6){
-    setTimeout(function(){
-        var msg = 'Veuillez utiliser une version récente de google chrome, firefox ou safari.'
-        document.body.innerHTML = '<div class="error_browser_msg">' + msg + '</div>'
-    }, 500)
-}
-</script>
+<?php
+to_css([
+    '/style.min.css',
+    '/codemirror/lib/codemirror.min.css', 
+    '/codemirror/theme/monokai.css'
+], 'server');
+?>
+</head>
 <body>
 <h1>OOP<strong>2</strong>SAS</h1>
 <div class="buttons_box">
@@ -47,30 +30,41 @@ if(!supportsES6){
         Timer
     </button>
 </div>
-<div class="icon_clean_source" id="icon_clean_source_oop"><img src="/img/cross.png"></div>
-<textarea id="oop_code" placeholder="Enter oop sas code..." ></textarea>
+<div class="icon_clean_source" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>"></div>
+<textarea id="oop_code" placeholder="Enter oop sas code..." style="display: none;"></textarea>
 <div class="main_body">
-    <div class="icon_clean_source" id="icon_clean_source"><img src="/img/cross.png"></div>
+    <div class="icon_clean_source" id="icon_clean_source"><img src="<?=to_img('/img/cross.png')?>"></div>
     <div class="main_part_wrapper">
         <div class="separator"></div><br>
-        <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." ></textarea>
+        <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." style="display: none;"></textarea>
     </div>
     <div class="main_part_wrapper">
         <div class="separator"></div><br>
-        <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code"></textarea>
+        <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code" style="display: none;"></textarea>
     </div>
 </div>
 <footer>
     <div class="separator"></div>
     by <a href="https://simergie.ch" target="_blanck">
-        <img class="mini_logo" src="/img/logo_simergie.png"> Simergie</a>
+        <img class="mini_logo" src="<?=to_img('/img/logo_simergie.png')?>"> Simergie</a>
     <br>
     Code on <a href="https://github.com/Bassim789/oop2sas" target="_blanck">
-        <img class="mini_logo" src="/img/github-logo.png"> Github</a>
+        <img class="mini_logo" src="<?=to_img('/img/github-logo.png')?>"> Github</a>
     <br>
     <?=Date('Y')?> 
 </footer>
 </body>
+<?php
+to_js([
+    '/codemirror/lib/codemirror.min.js', 
+    '/codemirror/placeHolder.js', 
+    '/codemirror/code_mirror_mode_simple.js',
+    '/codemirror/mode/oop2sas/oop2sas.js',
+    '/oop2sas.js',
+    '/code_mirror_helper.js',
+    '/check_es6_support.js'
+], 'server');
+?>
 <script>
 const helper = new code_mirror_helper({
     mode: 'oop2sas',

@@ -20,20 +20,28 @@ footer{
     text-align: center;
     padding-bottom: 10px;
     padding-top: 10px;
+    margin-top: 20px;
+}
+footer .separator{
+    width: 200px;
+    height: 0px;
+    margin: auto;
+    margin-bottom: 10px;
+    border-top: 1px solid #666;
 }
 a{
     color: #89bad2;
 }
 .main_body{
-    min-height: calc(100vh - 185px);
+    min-height: calc(100vh - 230px);
     width: 100%;
     display: inline-block;
     position: relative;
 }
 .icon_clean_source{
     position: absolute;
-    top: 12px;
-    left: calc(50% - 10px);
+    top: 42px;
+    left: calc(50% - 7px);
     cursor: pointer;
     z-index: 100;
 }
@@ -42,7 +50,7 @@ a{
 }
 
 #icon_clean_source_oop{
-    top: 85px;
+    top: 100px;
 }
 
 .main_part{
@@ -57,9 +65,10 @@ a{
 }
 .CodeMirror{
     float: left;
+    padding-top: 20px;
 }
 .main_body .CodeMirror{
-    margin-top: 10px;
+    margin-top: 20px;
     border-top: 1px solid #666;
 }
 .mini_logo{
@@ -67,7 +76,7 @@ a{
     vertical-align: bottom;
 }
 .buttons_box{
-    padding: 0px 20px 10px 20px;
+    padding: 0px 20px 5px 20px;
     margin-top: 5px;
 }
 .button_source{

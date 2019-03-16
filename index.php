@@ -38,6 +38,7 @@ error_reporting(-1);
     <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code"></textarea>
 </div>
 <footer>
+    <div class="separator"></div>
     by <a href="https://simergie.ch" target="_blanck">
         <img class="mini_logo" src="/img/logo_simergie.png"> Simergie</a>
     <br>

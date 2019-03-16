@@ -17,6 +17,23 @@ error_reporting(-1);
 <script src="/codemirror/mode/oop2sas/oop2sas.js?v=<?=time()?>"></script>
 <script src="/oop2sas.js?v=<?=time()?>"></script>
 <script src="/code_mirror_helper.js?v=<?=time()?>"></script>
+<script>
+var supportsES6 = function(){
+  try {
+    new Function("(a = 0) => a");
+    return true;
+  }
+  catch (err) {
+    return false;
+  }
+}();
+if(!supportsES6){
+    setTimeout(function(){
+        var msg = 'Veuillez utiliser une version récente de google chrome, firefox ou safari.'
+        document.body.innerHTML = '<div class="error_browser_msg">' + msg + '</div>'
+    }, 500)
+}
+</script>
 <body>
 <h1>OOP<strong>2</strong>SAS</h1>
 <div class="buttons_box">
@@ -34,8 +51,14 @@ error_reporting(-1);
 <textarea id="oop_code" placeholder="Enter oop sas code..." ></textarea>
 <div class="main_body">
     <div class="icon_clean_source" id="icon_clean_source"><img src="/img/cross.png"></div>
-    <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." ></textarea>
-    <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code"></textarea>
+    <div class="main_part_wrapper">
+        <div class="separator"></div><br>
+        <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." ></textarea>
+    </div>
+    <div class="main_part_wrapper">
+        <div class="separator"></div><br>
+        <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code"></textarea>
+    </div>
 </div>
 <footer>
     <div class="separator"></div>

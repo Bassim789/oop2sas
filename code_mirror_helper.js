@@ -35,8 +35,8 @@ class code_mirror_helper{
     }
     init_textarea(elems){
         const clean_btn = document.getElementById(elems.clean_btn_id)
-        this.editor_compiled = this.create_code_mirror(elems.compiled_id, '50%')
-        this.editor_source = this.create_code_mirror(elems.source_id, '50%')
+        this.editor_compiled = this.create_code_mirror(elems.compiled_id, '100%')
+        this.editor_source = this.create_code_mirror(elems.source_id, '100%')
         this.editor_source.on('change', () => {
             const source = this.editor_source.getValue()
             clean_btn.style.display = source === '' ? 'none' : 'block'

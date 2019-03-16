@@ -38,10 +38,28 @@ a{
     display: inline-block;
     position: relative;
 }
+.main_part_wrapper{
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+.main_body .separator{
+    display: inline;
+    width: calc(100% - 40px);
+    height: 0px;
+    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-top: 1px solid #666;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: left;
+}
 .icon_clean_source{
     position: absolute;
     top: 42px;
-    left: calc(50% - 7px);
+    left: calc(50% - 10px);
     cursor: pointer;
     z-index: 100;
 }
@@ -50,7 +68,7 @@ a{
 }
 
 #icon_clean_source_oop{
-    top: 100px;
+    top: 95px;
 }
 
 .main_part{
@@ -63,20 +81,29 @@ a{
     display: inline-block;
     outline: none;
 }
+
+.error_browser_msg{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    top: calc(50% - 10px);
+}
+
 .CodeMirror{
     float: left;
-    padding-top: 20px;
+    padding-top: 0px;
 }
 .main_body .CodeMirror{
-    margin-top: 20px;
-    border-top: 1px solid #666;
+    margin-top: 0px;
 }
 .mini_logo{
     width: 18px;
     vertical-align: bottom;
 }
 .buttons_box{
-    padding: 0px 20px 5px 20px;
+    padding: 0px 20px 20px 20px;
     margin-top: 5px;
 }
 .button_source{
@@ -102,5 +129,8 @@ a{
     .icon_clean_source{
         left: auto;
         right: 1px;
+    }
+    .main_part_wrapper{
+        width: 100%;
     }
 }

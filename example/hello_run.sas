@@ -1,1 +1,1 @@
-%hello(say_to, word)
+%hello(say_to, word) /* hello word! */

@@ -3,15 +3,17 @@ error_reporting(-1);
 require 'utils.php';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>OOP 2 SAS compilator</title>
+<meta charset="utf-8">
+<meta description="OOP 2 SAS compilator">
 <link href="<?=to_img('/img/o2-logo.png')?>" rel="icon">
 <meta name="theme-color" content="#272822">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <?php
 to_css([
-    '/style.min.css',
+    '/style.css',
     '/codemirror/lib/codemirror.min.css', 
     '/codemirror/theme/monokai.css'
 ], 'server');
@@ -30,10 +32,10 @@ to_css([
         Timer
     </button>
 </div>
-<div class="icon_clean_source" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>"></div>
+<div class="icon_clean_source" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
 <textarea id="oop_code" placeholder="Enter oop sas code..." style="display: none;"></textarea>
 <div class="main_body">
-    <div class="icon_clean_source" id="icon_clean_source"><img src="<?=to_img('/img/cross.png')?>"></div>
+    <div class="icon_clean_source" id="icon_clean_source"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
     <div class="main_part_wrapper">
         <div class="separator"></div><br>
         <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." style="display: none;"></textarea>
@@ -46,10 +48,10 @@ to_css([
 <footer>
     <div class="separator"></div>
     by <a href="https://simergie.ch" target="_blanck">
-        <img class="mini_logo" src="<?=to_img('/img/logo_simergie.png')?>"> Simergie</a>
+        <img class="mini_logo" src="<?=to_img('/img/logo_simergie.png')?>" alt="Simergie logo"> Simergie</a>
     <br>
     Code on <a href="https://github.com/Bassim789/oop2sas" target="_blanck">
-        <img class="mini_logo" src="<?=to_img('/img/github-logo.png')?>"> Github</a>
+        <img class="mini_logo" src="<?=to_img('/img/github-logo.png')?>" alt="Github logo"> Github</a>
     <br>
     <?=Date('Y')?> 
 </footer>

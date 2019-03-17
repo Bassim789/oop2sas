@@ -1,6 +1,16 @@
 <?php 
 error_reporting(-1);
 require 'utils.php';
+$path = dirname(__FILE__);
+$examples = [];
+$example_names = ['hello', 'calculator', 'timer'];
+foreach ($example_names as $key => $name) {
+    $examples[$name] = [
+        'oop' => file_get_contents($path.'/example/'.$name.'/'.$name.'_use.sas'),
+        'oop_class' => file_get_contents($path.'/example/'.$name.'/'.$name.'.oop2.sas'),
+        'oop_doc' => file_get_contents($path.'/example/'.$name.'/'.$name.'_doc.txt')
+    ];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,40 +30,56 @@ to_css([
 ?>
 </head>
 <body>
-<h1>OOP<strong>2</strong>SAS</h1>
-<div class="buttons_box">
-    <button class="button_source selected" example_name="hello">
-        Hello word
-    </button>
-    <button class="button_source" example_name="example_calculator">
-        Calculator
-    </button>
-    <button class="button_source" example_name="example_timer">
-        Timer
-    </button>
-</div>
-<div class="icon_clean_source" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
-<textarea id="oop_code" placeholder="Enter oop sas code..." style="display: none;"></textarea>
-<div class="main_body">
-    <div class="icon_clean_source" id="icon_clean_source"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
-    <div class="main_part_wrapper">
-        <div class="separator"></div><br>
-        <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." style="display: none;"></textarea>
+<div class="full_body">
+    <h1>OOP<strong>2</strong>SAS</h1>
+    <h2>Bring OOP style to SAS</h2>
+    <div class="buttons_box">
+        Examples: 
+        <?php 
+        $selected = 'selected';
+        foreach ($example_names as $key => $name) { ?>
+            <button class="button_source <?=$selected?>" example_name="<?=$name?>">
+                <?=$name?>
+            </button>
+        <?php 
+            $selected = '';
+        } ?>
     </div>
-    <div class="main_part_wrapper">
-        <div class="separator"></div><br>
-        <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code" style="display: none;"></textarea>
+    <div class="main_body_oop">
+        <div class="main_part_wrapper">
+            <div class="separator"></div><br>
+            <div class="icon_clean" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
+            <div class="section_title">Module usage</div>
+            <textarea id="oop_code" class="main_part" placeholder="Enter oop sas code..." style="display: none;"></textarea>
+        </div>
+        <div class="main_part_wrapper">
+            <div class="separator"></div><br>
+            <div class="icon_clean" id="icon_clean_doc"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
+            <div class="section_title">Module documentation</div>
+            <textarea id="oop_doc" class="main_part" placeholder="Enter oop sas doc..." style="display: none;"></textarea>
+        </div>
+    </div>
+    <div class="main_body">
+        <div class="main_part_wrapper">
+            <div class="separator"></div><br>
+            <div class="icon_clean" id="icon_clean_source"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
+            <div class="section_title">OOP style module</div>
+            <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." style="display: none;"></textarea>
+        </div>
+        <div class="main_part_wrapper">
+            <div class="separator"></div><br>
+            <div class="section_title">Compiled SAS module</div>
+            <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code" style="display: none;"></textarea>
+        </div>
     </div>
 </div>
 <footer>
     <div class="separator"></div>
-    by <a href="https://simergie.ch" target="_blanck">
-        <img class="mini_logo" src="<?=to_img('/img/logo_simergie.png')?>" alt="Simergie logo"> Simergie</a>
-    <br>
     Code on <a href="https://github.com/Bassim789/oop2sas" target="_blanck">
         <img class="mini_logo" src="<?=to_img('/img/github-logo.png')?>" alt="Github logo"> Github</a>
-    <br>
-    <?=Date('Y')?> 
+    <div class="footer_date">
+        <?=Date('Y')?>
+    </div>
 </footer>
 </body>
 <?php
@@ -77,30 +103,17 @@ helper.init_oop_code({
     textarea_id: 'oop_code',
     clean_btn_id: 'icon_clean_source_oop'
 })
+helper.init_oop_doc({
+    textarea_id: 'oop_doc',
+    clean_btn_id: 'icon_clean_doc'
+})
 helper.init_textarea({
     source_id: 'source_code', 
     compiled_id: 'compiled_code',
     clean_btn_id: 'icon_clean_source'
 })
-<?php 
-$path = dirname(__FILE__);
-$ext_oop = '_run.sas';
-$ext_class = '.oop2.sas';
-?>
-const examples = {
-    hello: {
-        oop: `<?=file_get_contents($path.'/example/'.'hello'.$ext_oop)?>`,
-        oop_class: `<?=file_get_contents($path.'/example/'.'hello'.$ext_class)?>`
-    },
-    example_calculator: {
-        oop: `<?=file_get_contents($path.'/example/'.'calculator'.$ext_oop)?>`,
-        oop_class: `<?=file_get_contents($path.'/example/'.'calculator'.$ext_class)?>`
-    },
-    example_timer: {
-        oop: `<?=file_get_contents($path.'/example/'.'timer'.$ext_oop)?>`,
-        oop_class: `<?=file_get_contents($path.'/example/'.'timer'.$ext_class)?>`
-    }
-}
+
+const examples = <?=json_encode($examples, true);?>;
 helper.set_default_source(examples.hello)
 
 const button_source = document.querySelectorAll('.button_source')

@@ -17,7 +17,7 @@ foreach ($example_names as $key => $name) {
 <head>
 <title>OOP 2 SAS compilator</title>
 <meta charset="utf-8">
-<meta description="OOP 2 SAS compilator">
+<meta description="Bring OOP style to SAS programming">
 <link href="<?=to_img('/img/o2-logo.png')?>" rel="icon">
 <meta name="theme-color" content="#272822">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -32,8 +32,8 @@ to_css([
 </head>
 <body>
 <div class="full_body">
-    <h1>OOP<strong>2</strong>SAS</h1>
-    <h2>Bring OOP style to SAS</h2>
+    <div class="logo_text">OOP<strong>2</strong>SAS</div>
+    <h1>Bring OOP style to SAS programming</h1>
     <div class="buttons_box">
         Examples: 
         <?php 
@@ -50,13 +50,13 @@ to_css([
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
             <div class="icon_clean" id="icon_clean_doc"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
-            <div class="section_title">Class documentation</div>
+            <h2 class="section_title">Class documentation</h2>
             <textarea id="oop_doc" class="main_part" placeholder="Enter oop sas doc..." style="display: none;"></textarea>
         </div>
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
             <div class="icon_clean" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
-            <div class="section_title">Class usage</div>
+            <h2 class="section_title">Class usage</h2>
             <textarea id="oop_code" class="main_part" placeholder="Enter oop sas code..." style="display: none;"></textarea>
         </div>
     </div>
@@ -64,12 +64,12 @@ to_css([
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
             <div class="icon_clean" id="icon_clean_source"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
-            <div class="section_title">OOP style class</div>
+            <h2 class="section_title">OOP style class</h2>
             <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." style="display: none;"></textarea>
         </div>
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
-            <div class="section_title">Compiled SAS class</div>
+            <h2 class="section_title">Compiled SAS class</h2>
             <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code" style="display: none;"></textarea>
         </div>
     </div>

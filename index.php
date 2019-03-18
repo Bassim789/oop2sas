@@ -51,13 +51,13 @@ to_css([
             <div class="separator"></div><br>
             <div class="icon_clean" id="icon_clean_doc"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
             <h2 class="section_title">Class documentation</h2>
-            <textarea id="oop_doc" class="main_part" placeholder="Enter oop sas doc..." style="display: none;"></textarea>
+            <textarea id="oop_doc" class="main_part" placeholder="Enter class documentation..." style="display: none;"></textarea>
         </div>
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
             <div class="icon_clean" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
             <h2 class="section_title">Class usage</h2>
-            <textarea id="oop_code" class="main_part" placeholder="Enter oop sas code..." style="display: none;"></textarea>
+            <textarea id="oop_code" class="main_part" placeholder="Enter class usage..." style="display: none;"></textarea>
         </div>
     </div>
     <div class="main_body">
@@ -65,12 +65,12 @@ to_css([
             <div class="separator"></div><br>
             <div class="icon_clean" id="icon_clean_source"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
             <h2 class="section_title">OOP style class</h2>
-            <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." style="display: none;"></textarea>
+            <textarea id="source_code" class="main_part" placeholder="Enter oop style class..." style="display: none;"></textarea>
         </div>
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
             <h2 class="section_title">Compiled SAS class</h2>
-            <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code" style="display: none;"></textarea>
+            <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas class" style="display: none;"></textarea>
         </div>
     </div>
 </div>

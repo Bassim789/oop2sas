@@ -9,7 +9,7 @@ var supportsES6 = function(){
 }();
 if(!supportsES6){
     setTimeout(function(){
-        var msg = 'Veuillez utiliser une version récente de google chrome, firefox ou safari.'
+        var msg = 'Please use a recent version of Google Chrome, Firefox or Safari.'
         document.body.innerHTML = '<div class="error_browser_msg">' + msg + '</div>'
     }, 500)
 }

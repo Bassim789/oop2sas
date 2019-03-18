@@ -5,7 +5,7 @@ function to_css($files, $mode){
         if($mode == 'server'){
             echo '<style>'.file_get_contents($path.$file).'</style>';
         } else {
-            echo '<link href="'.$file.'?v='.time().'" rel="stylesheet">';
+            echo '<link href="'.$file.'?v='.filemtime($path.$file).'" rel="stylesheet">';
         }
     }
 }
@@ -15,7 +15,7 @@ function to_js($files, $mode){
         if($mode == 'server'){
             echo '<script>'.file_get_contents($path.$file).'</script>';
         } else {
-            echo '<script src="'.$file.'?v='.time().'"></script>';
+            echo '<script src="'.$file.'?v='.filemtime($path.$file).'"></script>';
         }
     }
 }

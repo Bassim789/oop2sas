@@ -1,1 +1,1 @@
-Just a hello word class to say hello to &name!
+A hello word class just to say hello to &name!

@@ -23,11 +23,12 @@ foreach ($example_names as $key => $name) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <?php
 to_css([
-    '/style.css',
     '/codemirror/lib/codemirror.min.css', 
-    '/codemirror/theme/monokai.css'
-], 'server');
+    '/codemirror/theme/monokai.css',
+    '/style.css'
+], 'client');
 ?>
+</script>
 </head>
 <body>
 <div class="full_body">
@@ -48,27 +49,27 @@ to_css([
     <div class="main_body_oop">
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
-            <div class="icon_clean" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
-            <div class="section_title">Module usage</div>
-            <textarea id="oop_code" class="main_part" placeholder="Enter oop sas code..." style="display: none;"></textarea>
+            <div class="icon_clean" id="icon_clean_doc"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
+            <div class="section_title">Class documentation</div>
+            <textarea id="oop_doc" class="main_part" placeholder="Enter oop sas doc..." style="display: none;"></textarea>
         </div>
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
-            <div class="icon_clean" id="icon_clean_doc"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
-            <div class="section_title">Module documentation</div>
-            <textarea id="oop_doc" class="main_part" placeholder="Enter oop sas doc..." style="display: none;"></textarea>
+            <div class="icon_clean" id="icon_clean_source_oop"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
+            <div class="section_title">Class usage</div>
+            <textarea id="oop_code" class="main_part" placeholder="Enter oop sas code..." style="display: none;"></textarea>
         </div>
     </div>
     <div class="main_body">
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
             <div class="icon_clean" id="icon_clean_source"><img src="<?=to_img('/img/cross.png')?>" alt="cross icon"></div>
-            <div class="section_title">OOP style module</div>
+            <div class="section_title">OOP style class</div>
             <textarea id="source_code" class="main_part" placeholder="Enter oop sas class..." style="display: none;"></textarea>
         </div>
         <div class="main_part_wrapper">
             <div class="separator"></div><br>
-            <div class="section_title">Compiled SAS module</div>
+            <div class="section_title">Compiled SAS class</div>
             <textarea id="compiled_code" class="main_part" placeholder="Get compiled sas code" style="display: none;"></textarea>
         </div>
     </div>
@@ -91,7 +92,7 @@ to_js([
     '/oop2sas.js',
     '/code_mirror_helper.js',
     '/check_es6_support.js'
-], 'server');
+], 'client');
 ?>
 <script>
 const helper = new code_mirror_helper({
@@ -115,6 +116,7 @@ helper.init_textarea({
 
 const examples = <?=json_encode($examples, true);?>;
 helper.set_default_source(examples.hello)
+helper.init_animation()
 
 const button_source = document.querySelectorAll('.button_source')
 Array.from(button_source).forEach(button => {
@@ -127,4 +129,13 @@ Array.from(button_source).forEach(button => {
     })
 })
 </script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136391255-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-136391255-1');
+</script>
+
 </html>

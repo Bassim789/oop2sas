@@ -1,5 +1,3 @@
-%include "&lib_path/timer.sas";
-
 %timer(start, test1)
 /* do something */
 data test;

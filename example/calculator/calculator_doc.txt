@@ -1,0 +1,4 @@
+Just a dummy class to show that we can
+create multiple instances with their own state. 
+The &self contains the shared state and 
+the &this give access to the instance state

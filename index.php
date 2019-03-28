@@ -121,6 +121,7 @@ helper.init_animation()
 const button_source = document.querySelectorAll('.button_source')
 Array.from(button_source).forEach(button => {
     button.addEventListener('click', event => {
+        helper.animation = false
         const elem = event.target
         Array.from(button_source).forEach(el => el.classList.remove('selected'))
         elem.classList.add('selected')

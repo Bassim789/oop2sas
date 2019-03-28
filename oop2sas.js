@@ -47,9 +47,15 @@ class oop2sas{
         let method_name = line.split('(')[0]
         this.compiled_code += '%' + method_name.trim() + ':' + this.return_0_indend           
         for (let i = 0; i < args.length ; i++) {
-            let varname = args[i].trim()
+            let varname = args[i].split('=')[0].trim()
             this.compiled_code += `        %local ${varname}; %let ${varname} = &arg${i + 1};` 
             this.compiled_code += this.return_0_indend
+            if(args[i].includes('=')){
+                let default_value = args[i].split('=')[1].trim()
+                this.compiled_code += '        '
+                this.compiled_code += `%if "&${varname}" = "" %then %let ${varname} = ${default_value};` 
+                this.compiled_code += this.return_0_indend
+            }
         }
     }
     print_method_name(line){
@@ -63,7 +69,7 @@ class oop2sas{
             }
         } else { 
             this.compiled_code += '    %goto &method; ' + this.return_1_indend 
-            this.compiled_code += '%macro bringBackColor; %mend bringBackColor;' 
+            this.compiled_code += '%macro _; %mend _;' 
             this.compiled_code += this.return_1_indend + this.return_1_indend
         }
         if(line.split('(').length > 1){
@@ -93,6 +99,25 @@ class oop2sas{
             this.nb_max_arg = arg_max_in_line
         }
     }
+    add_obj_to_self(code){
+        let new_code = ''
+        let inside_self = false
+        let nb_parenthesis = 0
+        for(let i = 0; i < code.split('').length; i++){
+            if(new_code.endsWith('%&self(')){
+                inside_self = true
+                nb_parenthesis = 0
+            }
+            if(inside_self && code[i] === ')' && nb_parenthesis === 0){
+                inside_self = false
+                new_code += ', obj=&obj'
+            }
+            if(inside_self && code[i] === '(') nb_parenthesis += 1
+            if(inside_self && code[i] === ')') nb_parenthesis -= 1
+            new_code += code[i]
+        }
+        return new_code
+    }
     run(source_code){
         this.compiled_code = ''
         this.class_name_found = false
@@ -100,6 +125,7 @@ class oop2sas{
         this.class_name = false
         this.nb_max_arg = 0
         this.line_number = 0
+        source_code = this.add_obj_to_self(source_code)
         this.source_lines = source_code.split('\n')
         for(let i = 0; i < this.source_lines.length; i++){
             this.line_number = i

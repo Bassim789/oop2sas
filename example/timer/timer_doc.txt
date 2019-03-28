@@ -1,0 +1,2 @@
+Create a report with absolute and relative time
+for each steps with the total at the end

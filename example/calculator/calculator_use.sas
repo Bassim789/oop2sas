@@ -1,5 +1,3 @@
-%include "&lib_path/calculator.sas";
-
 %calculator(init_nb_var_set)
 
 %calculator(set, number, 333, obj=1)

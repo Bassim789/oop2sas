@@ -17,7 +17,7 @@ foreach ($example_names as $key => $name) {
 <head>
 <title>OOP 2 SAS compilator</title>
 <meta charset="utf-8">
-<meta description="Bring OOP style to SAS programming">
+<meta description="Bring OOP style to SAS">
 <link href="<?=to_img('/img/o2-logo.png')?>" rel="icon">
 <meta name="theme-color" content="#272822">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -32,8 +32,8 @@ to_css([
 </head>
 <body>
 <div class="full_body">
-    <div class="logo_text">OOP<strong>2</strong>SAS</div>
-    <h1>Bring OOP style to SAS programming</h1>
+    <div class="logo_text"><a href="/">OOP<strong>2</strong>SAS</a></div>
+    <h1>Bring OOP style to SAS</h1>
     <div class="buttons_box">
         Examples: 
         <?php 

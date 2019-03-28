@@ -37,14 +37,18 @@ a:hover{
     color: #89bad2;
 }
 h1{
-    font-size: 16px;
+    font-weight: bold;
+    font-size: 18px;
 }
 .logo_text{
-    font-size: 20px;
+    font-size: 24px;
     padding-bottom: 0px;
 }
 .logo_text strong{
-    font-size: 26px;
+    font-size: 32px;
+}
+.logo_text a{
+    text-decoration: none;
 }
 .full_body{
     min-height: calc(100vh - 90px);
@@ -106,7 +110,7 @@ h1{
     top: 30px;
     left: 0;
     width: 100%;
-    font-size: bold;
+    font-weight: bold;
     font-size: 18px;
     z-index: 10;
 }

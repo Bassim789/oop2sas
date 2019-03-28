@@ -1,10 +1,10 @@
-%calculator(init_nb_var_set)
+%calculator(init_nb_var_set);
 
-%calculator(set, number, 333, obj=1)
-%calculator(set, number, 11, obj=2)
+%calculator(set, number, 333, obj=1);
+%calculator(set, number, 11, obj=2);
 
-%calculator(double_var, number, obj=1)
-%calculator(double_var, number, obj=2)
+%calculator(double_var, number, obj=1);
+%calculator(double_var, number, obj=2);
 
 %put result = %calculator(get, number, obj=1);
 %put result = &calculator1_number;

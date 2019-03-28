@@ -1,4 +1,4 @@
-/* a small dummy example */
+/* a small example */
 calculator:
     %local pi; %let pi = 3.14;
 
@@ -21,5 +21,5 @@ calculator:
     save_data(mydata):
         data &mydata;
             set &mydata;
-            nb_var_set = &&&self._nb_var_set
+            nb_var_set = &&&self._nb_var_set;
         run;

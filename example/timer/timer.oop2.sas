@@ -3,8 +3,8 @@ timer:
     %local table_add; %let table_add = add_to_report;
 
     new:
-        %&self(set, steps, )
-        %&self(start_total)
+        %&self(set, steps, );
+        %&self(start_total);
     
     set(varname, value):
         %global &this._&varname; 
@@ -27,21 +27,21 @@ timer:
             %&self(finish, &step)
         %end;
         %let &this._steps = &&&this._steps &step_name;
-        %&self(set_now, start_&step_name)
+        %&self(set_now, start_&step_name);
         %put ********* START &step_name *********;
         
     finish(step_name):
-        %&self(set_now, finish_&step_name)
+        %&self(set_now, finish_&step_name);
         
     start_total:
-        %&self(set_now, total_start)
+        %&self(set_now, total_start);
         
     finish_total:
         %local total;
         %let step = %scan(&&&this._steps, %sysfunc(countw(&&&this._steps));
-        %&self(finish, &step)
+        %&self(finish, &step);
         %let total = %sysevalf(%sysfunc(datetime()) - &&&this._total_start);
-        %&self(set, total_duration, &total)
+        %&self(set, total_duration, &total);
         
     init_report:
         proc format;
@@ -84,7 +84,7 @@ timer:
         %&self(add_log, &step_name, 
             %sysfunc(putn(&duration, time13.2)), 
             %sysfunc(putn(&percent, pct.))
-        )
+        );
         
     add_all_duration:
         %local steps i;
@@ -97,7 +97,7 @@ timer:
         %&self(add_log, Total, 
             %sysfunc(putn(&&&this._total_duration, time13.2)), 
             %sysfunc(putn(100, pct.))
-        )
+        );
         
     print_all_duration:
         title Durée des étapes;
@@ -112,9 +112,9 @@ timer:
         run;
         
     print:
-        %&self(finish_total)
-        %&self(init_report)
-        %&self(add_all_duration)
-        %&self(add_total_duration)
-        %&self(print_all_duration)
+        %&self(finish_total);
+        %&self(init_report);
+        %&self(add_all_duration);
+        %&self(add_total_duration);
+        %&self(print_all_duration);
         %let &this._steps = __empty__;

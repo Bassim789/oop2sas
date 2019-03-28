@@ -1,4 +1,4 @@
-%timer(start, test1)
+%timer(start, test1);
 /* do something */
 data test;
     set sashelp.cars;
@@ -7,7 +7,7 @@ data test;
     end;
 run;
 
-%timer(start, another_thing)
+%timer(start, another_thing);
 /* do something else */
 data test;
     set sashelp.cars;
@@ -16,4 +16,4 @@ data test;
     end;
 run;
 
-%timer(print)
+%timer(print);

@@ -3,7 +3,6 @@ class code_mirror_helper{
         this.mode = option.mode
         this.theme = option.theme
         this.compilator = option.compilator
-        this.animation_timing = 0
     }
     set_default_source(code){
         this.editor_oop.setValue(code.oop)
@@ -87,12 +86,13 @@ class code_mirror_helper{
         this.editor_oop.setValue('')
         this.editor_source.setValue('')
         this.animation = true
+        this.animation_timing = 0
         this.animate(doc, this.editor_doc)
         this.animate(oop, this.editor_oop)
         this.animate(source, this.editor_source)
         setTimeout(() => {
             if(!this.animation) return false
-            location.reload()
+            this.init_animation()
         }, 100 * this.animation_timing + 3000)
         setTimeout(() => {
             document.body.addEventListener('click', () => {

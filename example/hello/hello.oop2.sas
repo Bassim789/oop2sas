@@ -1,3 +1,3 @@
 hello:
-    say_to(name = word):
+    say_to(name = world):
         %put hello &name!;

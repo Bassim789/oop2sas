@@ -1,1 +1,1 @@
-%hello(say_to, my word);
+%hello(say_to, my world);

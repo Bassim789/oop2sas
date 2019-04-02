@@ -4,9 +4,9 @@ timer:
 
     new:
         %&self(set, steps, );
-		%&self(set, steps_num, 0);
+        %&self(set, steps_num, 0);
         %&self(start_total);
-		%global &this._finish_total_done; %let &this._finish_total_done = 0;
+        %global &this._finish_total_done; %let &this._finish_total_done = 0;
 
     
     set(varname, value):
@@ -22,10 +22,10 @@ timer:
         
     start(step_name):
         %if not(%symexist(&this._steps)) %then %&self(new);
-		%else %if &&&this._steps = __empty__ %then %&self(new);
+        %else %if &&&this._steps = __empty__ %then %&self(new);
         %else %&self(finish_step);
         %let &this._steps = &&&this._steps %str(;) &step_name;
-		%let &this._steps_num = %eval(&&&this._steps_num + 1);
+        %let &this._steps_num = %eval(&&&this._steps_num + 1);
         %&self(set_now, start_&&&this._steps_num);
         %put ********* START &step_name *********;
         
@@ -40,7 +40,7 @@ timer:
         %&self(finish_step);
         %let total = %sysevalf(%sysfunc(datetime()) - &&&this._total_start);
         %&self(set, total_duration, &total);
-		%let &this._finish_total_done = 1;
+        %let &this._finish_total_done = 1;
         
     init_report:
         proc format;
@@ -110,11 +110,11 @@ timer:
         run;
         
     print(title):
-		%if "&title" = "" %then %let title = Durée des étapes;
-		%if not(&&&this._finish_total_done) %then
-			%&self(finish_total);
-        %&self(init_report);
-        %&self(add_all_duration);
-        %&self(add_total_duration);
-        %&self(print_all_duration, &title);
+        %if "&title" = "" %then %let title = Durée des étapes;
+        %if not(&&&this._finish_total_done) %then
+            %&self(finish_total);
+        %&self(init_report)
+        %&self(add_all_duration)
+        %&self(add_total_duration)
+        %&self(print_all_duration, &title)
         %let &this._steps = __empty__;
